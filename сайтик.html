@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поздравление с Днём Рождения</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            animation: backgroundAnimation 10s ease infinite;
+            background: linear-gradient(270deg, #f8e1f4, #ff4081, #ff6f61);
+            background-size: 400% 400%;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        a {
+            padding: 15px 30px;
+            background-color: rgba(255, 64, 129, 0.8);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.5em;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 20px rgba(255, 64, 129, 0.5);
+        }
+
+        a:hover {
+            background-color: rgba(255, 64, 129, 1);
+            transform: scale(1.1);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .confetti div {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            animation: fall 5s infinite;
+            will-change: transform;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti" id="confetti"></div>
+    <h1>Переходите по ссылке для поздравления!</h1>
+    <a href="#" onclick="congratulate(); return false;">Поздравить с Днём Рождения</a>
+
+    <script>
+        function congratulate() {
+            alert("С Днём Рождения! Желаем счастья, здоровья и исполнения всех желаний!");
+        }
+
+        // Генерация конфетти
+        function generateConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            for (let i = 0; i < 100; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.style.width = Math.random() * 10 + 'px';
+                confettiPiece.style.height = Math.random() * 10 + 'px';
+                confettiPiece.style.left = Math.random() * 100 + 'vw';
+                confettiPiece.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confettiPiece.style.animationDelay = Math.random() * 5 + 's';
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+
+        window.onload = generateConfetti;
+    </script>
+</body>
+</html>
